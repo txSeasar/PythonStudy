@@ -10,5 +10,5 @@ import pandas as pd
 
 dataFrameStock = pd.DataFrame(pd.read_csv('../data/600000.csv',sep=',',encoding='gbk')) 
 
-dataFrameStock
+dataFrameStock.describe()
 
