@@ -22,7 +22,7 @@ def computeSelfVarCorr(computeDf):
                 computeResult = oneCorrRetDf
             else:
                 computeResult = computeResult.append(oneCorrRetDf, ignore_index=True)
-                break;
+                #break;
     
     return computeResult
 
