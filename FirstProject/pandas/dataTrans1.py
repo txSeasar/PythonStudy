@@ -59,6 +59,8 @@ if not os.path.exists('%s%s' % (rootDir,'/out')):
 
 data.to_csv('%s%s' % (rootDir,'/out/OpenPric100.csv'),index=False)
 
+data.plot()
+
 print(data.describe())
 
         
