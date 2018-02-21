@@ -29,6 +29,6 @@ def computeSelfVarCorr(computeDf):
 fileDataDf = pd.DataFrame(pd.read_csv('../data/out/OpenPric100.csv',sep=',',encoding='gbk'))
 result = computeSelfVarCorr(fileDataDf.drop(['开始时间'],axis=1))
 print(result.sort_values('corr',axis=0,ascending=False))
-
+print(result.sort_values('corr',axis=0,ascending=False).iloc[101:110])
 fileDataDf[['600000','600015','600064','600121']].plot()
         
