@@ -215,7 +215,15 @@ def run_training():
                 images_placeholder,
                 labels_placeholder,
                 data_sets.test)
-
+        
+        #print('All varibles in saved model')
+        #print(sess.run('weights:0'))
+        #print(sess.run('biases:0'))
+        #modelReader = tf.train.NewCheckpointReader(checkpoint_file)  
+        #var_to_shape_map = modelReader.get_variable_to_shape_map()  
+        #for key in var_to_shape_map:  
+         #   print("tensor_name: ", key)  
+          #  print(modelReader.get_tensor(key)) # Remove this is you want to print only variable names  
 
 def main(_):
   if tf.gfile.Exists(FLAGS.log_dir):
@@ -267,7 +275,7 @@ if __name__ == '__main__':
       '--log_dir',
       type=str,
       #default=os.path.join(os.getenv('TEST_TMPDIR', '/tmp'), 'tensorflow/mnist/logs/fully_connected_feed'),
-      default=os.path.join('D:/workspacePython/PythonStudy/FirstProject', 'mnist/logs/fully_connected_feed'),
+      default=os.path.join('D:/workspacePython/PythonStudy/FirstProject', 'mnist/logs/fully_connected_feed7'),
       help='Directory to put the log data.'
   )
   parser.add_argument(
