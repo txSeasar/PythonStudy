@@ -103,6 +103,11 @@ def extract_labels(f, one_hot=False, num_classes=10):
       return dense_to_one_hot(labels, num_classes)
     return labels
 
+'''
+1）dType只接受uint8和float32，其中uint8为0-255的数，float为0-1之间的数
+2）如果是fake_data，会生成10000各样本数据
+3）one_hot只有在fake_data为true的情况下生效
+'''
 class DataSet(object):
 
   def __init__(self,

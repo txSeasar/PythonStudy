@@ -1,0 +1,13 @@
+(base) D:\workspacePython\PythonStudy\FirstProject>cd dataanalysis
+
+(base) D:\workspacePython\PythonStudy\FirstProject\dataanalysis>scrapy startproj
+ect ScrapeData
+New Scrapy project 'ScrapeData', using template directory 'd:\\anaconda3\\lib\\s
+ite-packages\\scrapy\\templates\\project', created in:
+    D:\workspacePython\PythonStudy\FirstProject\dataanalysis\ScrapeData
+
+You can start your first spider with:
+    cd ScrapeData
+    scrapy genspider example example.com
+
+(base) D:\workspacePython\PythonStudy\FirstProject\dataanalysis>cd ScrapeData
