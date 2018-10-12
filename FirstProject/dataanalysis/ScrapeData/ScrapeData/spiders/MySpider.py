@@ -30,19 +30,72 @@ class MySpider(scrapy.Spider):
     #爬取方法
     def parse(self, response):
         # 响应Cookie
-        Cookie1 = response.headers.getlist('Set-Cookie')   #查看一下响应Cookie，也就是第一次访问注册页面时后台写入浏览器的Cookie
+        #Cookie1 = response.headers.getlist('Set-Cookie')   #查看一下响应Cookie，也就是第一次访问注册页面时后台写入浏览器的Cookie
         
         print('登录中............')
-        print(Cookie1)
-        print(self.header)
-        print('xxxxxxxxxsssxxxxxxxxxx...')
+        '''
+        http://www.cninfo.com.cn/new/hisAnnouncement/query
         
-        req = Request('http://www.cninfo.com.cn/new/disclosure?column=sse_latest&pageNum=1&pageSize=20', 
-                      self.next, 
+        requestCookies
+        JSESSIONID=A921EEF6FFF94E5DD1FF96C391CA8DBD; 
+        noticeTabClicks=%7B%22szse%22%3A1%2C%22sse%22%3A0%2C%22hot%22%3A0%2C%22myNotice%22%3A0%7D; 
+        tradeTabClicks=%7B%22financing%20%22%3A0%2C%22restricted%20%22%3A0%2C%22blocktrade%22%3A0%2C%22myMarket%22%3A0%2C%22financing%22%3Anull%7D; 
+        JSESSIONID=A921EEF6FFF94E5DD1FF96C391CA8DBD; 
+        _sp_ses.2141=*; 
+        _sp_id.2141=e64cc4cd-3219-4446-b9bd-09268001f9b8.1539077238.6.1539304574.1539158177.4658a655-0728-4e16-a4a4-4a0533a38915
+        
+        formData
+        pageNum: 1
+        pageSize: 30
+        tabName: fulltext
+        column: szse
+        stock: 
+        searchkey: 
+        secid: 
+        plate: sz
+        category: category_ndbg_szsh;category_bndbg_szsh;category_yjdbg_szsh;category_sjdbg_szsh;
+        trade: 
+        seDate: 2000-01-01 ~ 2018-10-12
+        '''
+        #simple request
+        #req = Request('http://www.cninfo.com.cn/new/disclosure?column=sse_latest&pageNum=1&pageSize=20', 
+        #              self.next, 
+        #              dont_filter=True)
+        #req.meta['cookiejar'] = response.meta['cookiejar']
+        #req.cookies['_sp_id.2141'] = 'e64cc4cd-3219-4446-b9bd-09268001f9b8.1539077238.3.1539140696.1539084236.79065683-01aa-471b-87f8-b6e44e816fa8'
+        
+        
+        req = FormRequest('http://www.cninfo.com.cn/new/hisAnnouncement/query', 
+                      formdata={'pageNum':'1',
+                            'pageSize':'30',
+                            'tabName':'fulltext',
+                            'column':'szse',
+                            'stock':'',
+                            'searchkey':'',
+                            'secid':'',
+                            'plate':'sz',
+                            'category':'category_ndbg_szsh;category_bndbg_szsh;category_yjdbg_szsh;category_sjdbg_szsh;',
+                            'trade':'',
+                            'seDate':'2000-01-01 ~ 2018-10-12'},
+                      callback=self.next, 
                       dont_filter=True)
         req.meta['cookiejar'] = response.meta['cookiejar']
-        req.cookies.update({'_sp_id.2141':'e64cc4cd-3219-4446-b9bd-09268001f9b8.1539077238.3.1539140696.1539084236.79065683-01aa-471b-87f8-b6e44e816fa8'})
-        #req.cookies['_sp_id.2141'] = 'e64cc4cd-3219-4446-b9bd-09268001f9b8.1539077238.3.1539140696.1539084236.79065683-01aa-471b-87f8-b6e44e816fa8'
+        req.cookies.update({'noticeTabClicks':'=%7B%22szse%22%3A1%2C%22sse%22%3A0%2C%22hot%22%3A0%2C%22myNotice%22%3A0%7D'})
+        req.cookies.update({'tradeTabClicks':'%7B%22financing%20%22%3A0%2C%22restricted%20%22%3A0%2C%22blocktrade%22%3A0%2C%22myMarket%22%3A0%2C%22financing%22%3Anull%7D'})
+        req.cookies.update({'_sp_ses.2141':'*'})
+        req.cookies.update({'_sp_id.2141':'e64cc4cd-3219-4446-b9bd-09268001f9b8.1539077238.6.1539304574.1539158177.4658a655-0728-4e16-a4a4-4a0533a38915'})
+        
+        '''req.formdata.update({'pageNum':'1',
+        'pageSize':'30',
+        'tabName':'fulltext',
+        'column':'szse',
+        'stock':'',
+        'searchkey':'',
+        'secid':'',
+        'plate':'sz',
+        'category':'category_ndbg_szsh;category_bndbg_szsh;category_yjdbg_szsh;category_sjdbg_szsh;',
+        'trade':'',
+        'seDate':'2000-01-01 ~ 2018-10-12'})'''
         req.method = 'POST'
         #req.headers = self.header
         
@@ -63,9 +116,10 @@ class MySpider(scrapy.Spider):
         print('#######################')
          #实例一个容器保存爬取的信息
         item = ScrapedataItem()  
-        for data in dataRet['classifiedAnnouncements']:
+        #for data in dataRet['classifiedAnnouncements']:
+        for data in dataRet['announcements']:
             #获取每个div中的课程路径    
-            data = data[0]
+            #data = data[0]
             print("++++++++++"+data['secName'])
             #item['code'] = 'http://www.imooc.com' + box.xpath('.//@href').extract()[0]
             item['secCode'] = data['secCode']

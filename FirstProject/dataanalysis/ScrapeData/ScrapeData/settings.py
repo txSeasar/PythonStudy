@@ -68,8 +68,8 @@ COOKIES_ENABLED = True
 #    'ScrapeData.pipelines.ScrapedataPipeline': 300,
 #}
 ITEM_PIPELINES = {
-    #'ScrapeData.pipelines.ScrapedataPipeline': 1,
-    'ScrapeData.pipelinesFile.ScrapefilePipeline':1,
+    'ScrapeData.pipelines.ScrapedataPipeline': 1,
+    'ScrapeData.pipelinesFile.ScrapefilePipeline':100,
 }
 FILES_STORE = 'D:/workspacePython/PythonStudy/FirstProject/dataanalysis/data'
 

@@ -11,3 +11,7 @@ You can start your first spider with:
     scrapy genspider example example.com
 
 (base) D:\workspacePython\PythonStudy\FirstProject\dataanalysis>cd ScrapeData
+
+
+(base) D:\workspacePython\PythonStudy\FirstProject\dataanalysis\ScrapeData>scrap
+y crawl MySpider
