@@ -20,7 +20,8 @@ from pdfminer.converter import PDFPageAggregator
 from pdfminer.layout import LTTextBoxHorizontal,LAParams
 from pdfminer.pdfinterp import PDFTextExtractionNotAllowed
 
-text_path = 'data/BOA2014annualReport.pdf'
+#text_path = 'data/BOA2014annualReport.pdf'
+text_path = 'data/1200189125.PDF'
 # text_path = r'photo-words.pdf'
 
 
